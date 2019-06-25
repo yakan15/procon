@@ -16,15 +16,16 @@ struct control{
     }
 
     bool operator<(const control &another) const{
-        if(x!=another.x)return t < another.t;
-        else return int(act) < int(another.act);
+        if(x==another.x&&t==another.t)return int(act) < int(another.act);
+        return t < another.t;
     }
 };
 
 int main(void) {
     ll n,q;
+    cin >> n >> q;
     vector<control> a;
-    vector<int> d;
+    vector<ll> d;
     rep(i,n){
         ll tt,ts,tx;
         cin >> tt >> ts >> tx;
@@ -33,19 +34,20 @@ int main(void) {
     }
     rep(i,q){
         ll td;
+        cin >> td;
         d.push_back(td);
     }
     sort(a.begin(), a.end());
-    set<int> work;
-    int cur=0;
+    set<ll> work;
+    ll cur=0;
     rep(i,q){
-        while(a[cur].t<=d[i]){
+        while(cur<n*2&&a[cur].t<=d[i]){
             if(a[cur].act)work.insert(a[cur].x);
-            else work.erase(work.find(a[cur].x));
+            else work.erase(a[cur].x);
             cur++;
         }
-        if(work.size()==0)cout << -1 << endl;
-        else cout << *work.begin() << endl;
+        if(work.empty()) cout << -1 << endl;
+        else cout << *(work.begin()) << endl;
     }
     return 0;
 }
