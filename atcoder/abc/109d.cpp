@@ -46,6 +46,7 @@ int main(void) {
                 if(!state&&a[j][i]){ 
                     state=true;
                     done++;
+                    continue;
                 }
                 if(i==0&&j==0)continue;
                 if(state){
