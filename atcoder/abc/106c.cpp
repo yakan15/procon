@@ -7,20 +7,23 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 const ll MOD = 1000000007;
-
+string s;
+ll k;
 int main(void) {
-    ll n,k;
-    cin >> n >> k;
-    ll res = pow(n/k,3);
-    if(k%2==0){
-        ll tmp=k/2;
-        int cnt=0;
-        while(tmp<=n){
-           cnt++;
-           tmp+=k;
-        } 
-        res += pow(cnt,3); 
+    cin >> s >> k;
+    ll cnt=0;
+    char res;
+    rep(i,s.size()){
+        if(s[i]=='1')cnt++;
+        else{
+            res=s[i];
+            break;
+        }
     }
-    cout << res << endl;
+    if(k<=cnt){
+        cout << 1 << endl;
+    }else{
+        cout << res << endl;
+    }
     return 0;
 }
