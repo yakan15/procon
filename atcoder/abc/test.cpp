@@ -4,10 +4,6 @@ using namespace std;
 
 int main()
 {
-    set<int> a;
-    a.insert(3);a.insert(4);a.insert(1);
-    for(auto x:a)printf("%d ",x);
-    printf(" begin : %d\n",*(a.begin()));
-    printf("hello world!\n");
+    cout  << ceil(4/2) << endl;
     return 0;
 }
