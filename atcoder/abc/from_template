@@ -4,6 +4,7 @@ if [ $# -ne 1 ]; then
     echo "error"
     exit
 fi
-
-cp template.cpp $1.cpp
-code $1.cpp
+fname=$1
+filename=${fname%%.*}.cpp
+cp template.cpp $filename
+code $filename

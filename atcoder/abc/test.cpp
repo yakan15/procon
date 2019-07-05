@@ -4,6 +4,8 @@ using namespace std;
 
 int main()
 {
-    cout  << ceil(4/2) << endl;
+    int a;
+    cin >> a;
+    int b[a][2]={};
     return 0;
 }
