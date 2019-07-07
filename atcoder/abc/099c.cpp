@@ -1,24 +1,12 @@
 #include <bits/stdc++.h>
-
+#define rep(i,n) for(int (i)=0;(i)<(n);(i)++)
+// const bool debug=true;
+const bool debug=false;
+#define DEBUG if(debug==true)
 using namespace std;
-
-int div9(int x){
-    int i=1;
-    for (;pow(9,i)<=x;i++){
-    }
-    // cout << pow(9,i-1)<<endl;
-    if(i==1){return 0;}
-    return pow(9,i-1);
-}
-
-int div6(int x){
-    int i=1;
-    for (;pow(6,i)<=x;i++){
-    }
-    // cout << i<<endl;
-    if(i==1){return 0;}
-    return pow(6,i-1);
-}
+typedef long long ll;
+typedef unsigned long long ull;
+const ll MOD = 1000000007;
 
 int main(void){
     int N;
@@ -26,17 +14,28 @@ int main(void){
     int a,tmp1,tmp2;
     int count=0;
     a=N;
-    while(true){
-        cout << "a:" <<a<<endl;
-        tmp1 = a-div9(a);
-        tmp2 = a-div6(a);
-        // printf("%d, %d\n", tmp1,tmp2);
-        if(tmp1==tmp2){
-            count+=tmp1;
-            break;
+    int res=1<<30,sum,vala,valb;
+    rep(i,N+1){
+        sum=0; 
+        vala=i;valb=N-i;
+        int aa=1;
+        while(vala>=aa*6)aa*=6;
+        while(vala>0){
+            sum+=vala/aa;
+            vala=vala%aa;
+            aa/=6;
         }
-        a=min(tmp1,tmp2);
-        count++;
+        int bb=1;
+        while(valb>=bb*9)bb*=9;
+        while(valb>0){
+            sum+=valb/bb;
+            valb=valb%bb;
+            bb/=9;
+        }
+        if(res>sum){
+            res=sum;
+            DEBUG{cout << i << endl;}
+        }
     }
-    cout << count <<endl;
+    cout << res <<endl;
 }

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo "error"
+    exit
+fi
+fname=$1
+filename=${fname%%.*}.cpp
+cp template.cpp $filename
+code $filename

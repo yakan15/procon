@@ -9,6 +9,7 @@ typedef unsigned long long ull;
 const ll MOD = 1000000007;
 int n,m,q;
 int main(void) {
+<<<<<<< HEAD:atcoder/abc/106d.cpp
     cin >> n >> m >> q;
     int lst[n+1][n+1]={};
     int sum[n+1][n+1]={};    
@@ -32,5 +33,15 @@ int main(void) {
         }        
         cout << res << endl;
     }
+=======
+    ll n,k;
+    cin >> n >> k;
+    int a[n];
+    rep(i,n){
+        cin >> a[i];
+    }
+
+    cout << ceil((n-1)*1.0/(k-1)) << endl;
+>>>>>>> 9a2008d3eb00a61123a288bd6be662cb9094cf36:atcoder/abc/101c.cpp
     return 0;
 }
