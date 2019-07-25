@@ -29,7 +29,7 @@ int main(void) {
             }
             if(dig==0){
                 for(int k=0;k<10;k++){
-                    dp[0][i][j]+=dp[1][i-1][(j-k-1+11*d)%d];
+                    dp[0][i][(j+9)%d]+=dp[1][i-1][(j-k+11*d)%d];
                     dp[0][i][j]%=MOD;
                 }
             }
