@@ -25,22 +25,20 @@ int main(void) {
     sort(items.begin(),items.end()); 
     rep(i,N){
         bool same_as_prev = (i!=0&&items[i].c==items[i-1].c);
+        int nw=items[i].w,nc=items[i].c,nv=items[i].v;
         rep(j,W+1){
             rep(k,C+1){
                 if(same_as_prev){
                     dp[i+1][j][k][0]=dp[i][j][k][0];
                     dp[i+1][j][k][1]=dp[i][j][k][1];
+                    if(k>0&&j>=nw){
+                        dp[i+1][j][k][1]=max(dp[i][j][k][1],max(dp[i][j-nw][k][1],dp[i][j-nw][k-1][0])+nv);
+                    }
                 }else{
                     dp[i+1][j][k][0]=max(dp[i][j][k][0],dp[i][j][k][1]);
-                }
-            }
-        }
-        for(int j=0;j+items[i].w<=W;j++){
-            for(int k=1;k<=C;k++){
-                if(same_as_prev){
-                    dp[i+1][j+items[i].w][k][1]=max(dp[i+1][j+items[i].w][k][1],max(dp[i][j][k][1],dp[i][j][k-1][0])+items[i].v);
-                }else{
-                    dp[i+1][j+items[i].w][k][1]=max(dp[i+1][j+items[i].w][k][1], max(dp[i][j][k-1][0],dp[i][j][k-1][1])+items[i].v);
+                    if(k>0&&j>=nw){
+                        dp[i+1][j][k][1]=max(dp[i][j-nw][k-1][0],dp[i][j-nw][k-1][1])+nv;
+                    }
                 }
             }
         }

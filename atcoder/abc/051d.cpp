@@ -12,20 +12,31 @@ int main(void) {
     int n,m;
     cin>>n>>m;
     int mat[n][n];
-    int edge[n][n]={};
     int lim=10000000;
+    int x[m], y[m], d[m];
     rep(i,n)rep(j,n)mat[i][j]=lim;
-    int next[n][n];
-    rep(i,n)rep(j,n)next[i][j]=-1;
-    rep(i,n){
+    rep(i,m){
         int ta,tb,tc;
         cin>>ta>>tb>>tc;
         ta--;
         tb--;
+        x[i] = ta;
+        y[i] = tb;
+        d[i] = tc;
         mat[ta][tb]=tc;
         mat[tb][ta]=tc;
-        edge[ta][tb]=1;
-        edge[tb][ta]=1;
     }
+    rep(k,n)rep(i,n)rep(j,n){
+        if(mat[i][j]>mat[i][k]+mat[k][j]){
+            mat[i][j]=mat[i][k]+mat[k][j];
+        }
+    }
+    int res=0;
+    rep(i,m){
+        if(d[i] > mat[x[i]][y[i]]){
+            res++;
+        }
+    }
+    cout << res << endl;
     return 0;
 }
