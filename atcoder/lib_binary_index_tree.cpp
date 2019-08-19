@@ -10,29 +10,29 @@ const ll MOD = 1000000007;
 
 class BinaryIndexTree{
     public:
-        BinaryIndexTree(int N) : n(N), data(n*2-1,0) {}
-        int sum(int i){
+        BinaryIndexTree(long long N) : n(N), data(n*2-1,0) {}
+        long long sum(long long i){
             assert(i < n);
-            int s = 0;
+            long long s = 0;
             while(i > 0){
                 s += data[i];
                 i -= i & -i;
             }
             return s;
         } 
-        int add(int i, int x){
+        long long add(long long i, long long x){
             assert(i < n);
             while(i <= n){
                 data[i] += x;
                 i += i & -i;
             }
         }
-        int size(void){
+        long long size(void){
             return n;
         }
     private:
-        int n;
-        vector<int> data;
+        long long n;
+        vector<long long> data;
 };
 
 // have not verified
