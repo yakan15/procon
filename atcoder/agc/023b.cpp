@@ -13,5 +13,22 @@ const ll MOD = 1000000007;
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
+    int n;cin>>n;
+    string s[n];
+    rep(i,n){cin>>s[i];}
+    ll res=0;
+    rep(i,n){
+        bool flg=true;
+        rep(j,n){
+            rep(k,n){
+                if((j+i)%n==k){continue;}
+                flg &= (s[(j+i)%n][k] == s[(k+i)%n][j]);
+            }
+        }
+        if(flg){
+            res += n;
+        }
+    }
+    cout << res << endl;
     return 0;
 }
