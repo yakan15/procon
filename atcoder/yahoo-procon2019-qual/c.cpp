@@ -20,5 +20,17 @@ template<class T> inline bool chmax(T& a, T b) {
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
+    ll k,a,b;cin>>k>>a>>b;
+    if((b-a)/2<2||a>k+1){
+        cout << k+1 << endl;
+        return 0;
+    }else{
+        ll remain = k;
+        ll res = a;
+        remain -= a-1;
+        res += (b-a)*(remain/2);
+        res += remain%2;
+        cout << res << endl;
+    }
     return 0;
 }

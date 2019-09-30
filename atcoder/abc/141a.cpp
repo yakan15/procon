@@ -20,5 +20,13 @@ template<class T> inline bool chmax(T& a, T b) {
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
+    string s;cin>>s;
+    if(s[0]=='S'){
+        cout << "Cloudy" << endl;
+    }else if(s[0]=='C'){
+        cout << "Rainy" << endl;
+    }else{
+        cout << "Sunny" << endl;
+    }
     return 0;
 }

@@ -20,5 +20,16 @@ template<class T> inline bool chmax(T& a, T b) {
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
+    string s;cin>>s;
+    rep(i,s.size()){
+        if(i%2==0&&(s[i]=='R'||s[i]=='U'||s[i]=='D')){
+            continue;
+        }else if(i%2==1&&(s[i]=='L'||s[i]=='U'||s[i]=='D')){
+            continue;
+        }
+        cout << "No" << endl;
+        return 0;
+    }
+    cout << "Yes" << endl;
     return 0;
 }

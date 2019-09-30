@@ -20,5 +20,16 @@ template<class T> inline bool chmax(T& a, T b) {
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
+    int n;cin>>n;
+    vector<pair<int,int>> pp(n,pair<int,int>(0,0));
+    rep(i,n){
+        cin >> pp[i].first;
+        pp[i].second = i+1;
+    }
+    sort(begin(pp), end(pp));
+    rep(i,n){
+        cout << pp[i].second;
+        cout << (i==n-1 ? "\n" : " ");
+    }
     return 0;
 }

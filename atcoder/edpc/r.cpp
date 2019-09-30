@@ -17,8 +17,30 @@ template<class T> inline bool chmax(T& a, T b) {
     if (a < b) { a = b; return true;}
     return false;
 }
+vector<vector<ll>> mul(vector<vector<ll>> &a, vector<vector<ll>> &b, int n){
+    vector<vector<ll>> c(n,vector<ll>(n,0));
+    rep(i,n)rep(j,n)rep(k,n){ (c[i][k] += a[i][j]*b[j][k]) %= MOD;}
+    return c;
+}
+
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
+    ll n,k;cin>>n>>k;
+    vector<vector<ll>> mat(n,vector<ll>(n)), res(n,vector<ll>(n,0));
+    rep(i,n) res[i][i] = 1;
+    rep(i,n){
+        rep(j,n){
+            cin>>mat[i][j];
+        }
+    }
+    while(k){
+        if(k&1) {res = mul(res, mat, n);}
+        mat = mul(mat, mat, n);
+        k /= 2;
+    }
+    ll ans = 0;
+    rep(i,n) rep(j,n) {(ans += res[i][j]) %= MOD;}
+    cout << ans << endl;
     return 0;
 }

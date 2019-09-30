@@ -20,5 +20,21 @@ template<class T> inline bool chmax(T& a, T b) {
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
+    string s,t;
+    cin>>s>>t;
+    int ns = s.size(),nt=t.size();
+    int sum_s[ns+1]={},sum_t[nt+1]={};
+    rep(i,ns){
+        sum_s[i+1] = (s[i]=='A' ? 2 : 1) + sum_s[i];
+    }
+    rep(i,nt){
+        sum_t[i+1] = (t[i]=='A' ? 2 : 1) + sum_t[i];
+    }
+    int q;cin>>q;
+    rep(i,q){
+        int a,b,c,d;cin>>a>>b>>c>>d;
+        a--;c--;
+        cout << ((sum_s[b]-sum_s[a])%3 == (sum_t[d]-sum_t[c])%3 ? "YES" : "NO") << endl;
+    }
     return 0;
 }

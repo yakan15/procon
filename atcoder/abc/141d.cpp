@@ -20,5 +20,22 @@ template<class T> inline bool chmax(T& a, T b) {
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
+    ll n,m;cin>>n>>m;
+    vector<ll> a(n);rep(i,n){cin>>a.at(i);}
+    priority_queue<double> pq;
+    rep(i,n){pq.push(a.at(i));}
+    rep(i,m){
+        if(pq.empty()){break;}
+        double tmp = pq.top();
+        pq.pop();
+        tmp /=2;
+        if(tmp>=1.0){pq.push(tmp);}
+    }
+    ll res = 0;
+    while(!pq.empty()){
+        res += ll(pq.top());
+        pq.pop();
+    }
+    cout << res << endl;
     return 0;
 }

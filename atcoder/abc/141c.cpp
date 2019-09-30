@@ -20,5 +20,18 @@ template<class T> inline bool chmax(T& a, T b) {
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
+    ll n,k,q;cin>>n>>k>>q;
+    ll a[q];rep(i,q){cin>>a[i];}
+    ll cnt[n]={};
+    rep(i,q){
+        cnt[a[i]-1]++;
+    }
+    rep(i,n){
+        if(k-q+cnt[i]>0){
+            cout << "Yes" << endl;
+        }else{
+            cout << "No" << endl;
+        }
+    }
     return 0;
 }
