@@ -13,9 +13,9 @@ char itoc(int i){
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    long long s = 1;
-    for(long long i=1;i<=12;i++){
-        s *= i;
-    }
-    cout << s << endl;
+    function<int(int)> tst = [&](int x){
+        if(x==100000)return 0;
+        return tst(x+1) + 1;
+    };
+    cout << tst(0) << endl;
 }
