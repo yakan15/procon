@@ -20,19 +20,21 @@ template<class T> inline bool chmax(T& a, T b) {
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    ll k; cin>>k;
-    vector<ll> a(50,49);
-    ll quot = k/50,reminder = k%50;
-    rep(i,50){
-        a[i] += quot;
-        a[i] -= reminder;
+    int n,k;cin>>n>>k;
+    vector<int> a(n);
+    rep(i,n){
+        cin>>a[i];
     }
-    rep(i,reminder){
-        a[i] += 50+1;
+    int min_d = a[0];
+    rep(i,n){
+        min_d = __gcd(min_d,a[i]);
     }
-    cout << 50 << endl;
-    rep(i,50){
-        cout << a[i] << (i==49 ? "\n" : " ");
+    rep(i,n){
+        if(a[i]>=k&&(a[i]-k)%min_d==0){
+            cout << "POSSIBLE" << endl;
+            return 0;
+        }
     }
+    cout << "IMPOSSIBLE" << endl;
     return 0;
 }

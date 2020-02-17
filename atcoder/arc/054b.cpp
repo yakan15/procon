@@ -20,19 +20,19 @@ template<class T> inline bool chmax(T& a, T b) {
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    ll k; cin>>k;
-    vector<ll> a(50,49);
-    ll quot = k/50,reminder = k%50;
-    rep(i,50){
-        a[i] += quot;
-        a[i] -= reminder;
+    long double p;cin>>p;
+    int n = 200;
+    vector<long double> speed(n);
+    speed[0] = 1;
+    repr(i,1,n) {
+        speed[i] = max((long double)(0), pow((long double)(2),(long double)(i)/1.5));
     }
-    rep(i,reminder){
-        a[i] += 50+1;
+    long double res = LDBL_MAX;
+    rep(i,n) {
+        if (speed[i] != 0) {
+            chmin(res, (long double)(i)+p/speed[i]);
+        }
     }
-    cout << 50 << endl;
-    rep(i,50){
-        cout << a[i] << (i==49 ? "\n" : " ");
-    }
+    printf("%.10Lf\n", res);
     return 0;
 }

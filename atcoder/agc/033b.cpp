@@ -20,19 +20,30 @@ template<class T> inline bool chmax(T& a, T b) {
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    ll k; cin>>k;
-    vector<ll> a(50,49);
-    ll quot = k/50,reminder = k%50;
-    rep(i,50){
-        a[i] += quot;
-        a[i] -= reminder;
+    ll h,w,n;cin>>h>>w>>n;
+    ll r0,c0;cin>>r0>>c0;
+    string s,t;cin>>s>>t;
+    map<char,ll> cnts;
+    cnts['L']=c0;
+    cnts['R']=w+1-c0;
+    cnts['U']=r0;
+    cnts['D']=h+1-r0;
+    rep(i,n){
+        cnts[s[i]]--;
+        if(cnts[s[i]]<=0){
+            cout << "NO" << endl;
+            return 0;
+        }
+        if(t[i]=='L'&&cnts['R']<w){
+            cnts['R']++;
+        }else if(t[i]=='R'&&cnts['L']<w){
+            cnts['L']++;
+        }else if(t[i]=='U'&&cnts['D']<h){
+            cnts['D']++;
+        }else if(t[i]=='D'&&cnts['U']<h){
+            cnts['U']++;
+        }
     }
-    rep(i,reminder){
-        a[i] += 50+1;
-    }
-    cout << 50 << endl;
-    rep(i,50){
-        cout << a[i] << (i==49 ? "\n" : " ");
-    }
+    cout << "YES" << endl;
     return 0;
 }

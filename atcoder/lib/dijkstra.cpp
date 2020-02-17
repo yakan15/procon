@@ -17,22 +17,31 @@ template<class T> inline bool chmax(T& a, T b) {
     if (a < b) { a = b; return true;}
     return false;
 }
+
+template<typename T>
+template<typename S>
+vector<T> dijkstra(vector<S> &mat, int s) {
+    const auto INF = numeric_limits<T>::max();
+    vector<T> dist(mat.size(), INF);
+    using P = pair<T, int>;
+    priority_queue<P, vector<P>, greater<P>> pq;
+    dist[s] = 0;
+    pq.emplace(0, s);
+    while(!que.empty()) {
+        T cost;
+        int idx;
+        tie(cost, idx) = que.top();
+        que.pop();
+        if(dist[idx] < cost) {continue;} 
+        for(auto x : mat[idx]) {
+            auto next_cost = 
+        }
+        
+    }
+}
+
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    ll k; cin>>k;
-    vector<ll> a(50,49);
-    ll quot = k/50,reminder = k%50;
-    rep(i,50){
-        a[i] += quot;
-        a[i] -= reminder;
-    }
-    rep(i,reminder){
-        a[i] += 50+1;
-    }
-    cout << 50 << endl;
-    rep(i,50){
-        cout << a[i] << (i==49 ? "\n" : " ");
-    }
     return 0;
 }

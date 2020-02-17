@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 #define repr(i,from,to) for(int (i)=(from);(i)<(to);(i)++)
 #define rep(i,n) for(int (i)=0;(i)<(n);(i)++)
-const bool debug=true;
-// const bool debug=false;
+// const bool debug=true;
+const bool debug=false;
 #define DEBUG if(debug==true)
 #define vprint(x) for(auto a:(x)) cout << x << endl;
 using namespace std;
@@ -42,7 +42,7 @@ int main(void) {
     int mask = (1<<x+y+z)-1;
     vector<vector<ll> > dp(n+1,vector<ll>(mask+5,0));
     rep(i,10){
-        dp[0][1<<i]=1;
+        dp[0][(1<<i)&mask]+=1;
     }
     int checkbit = (1<<z-1) + (1<<z+y-1) + (1<<x+y+z-1); 
     DEBUG{

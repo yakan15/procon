@@ -26,27 +26,28 @@ int main(void) {
         cin>>a[i];
     }
     sort(begin(a), end(a));
-    int cnt = a[0];
-    if(cnt>=n){
+    if(a[0]+1<a[n-1]){
         cout << "No" << endl;
         return 0;
     }
-    vector<int> num(n);
-    int col = 1;
-    num[0] = 1;
-    bool fig = false;
-    repr(i, 1, n){
-        num[i] = col;
-        if(col==cnt){
-            flg = true;
-        }
-        col = min(col+1, cnt);
+    // int cnt = a[0];
+    // bool flg = a[0]==a[n-1]&&(a[0]==n-1||n>=2*a[0]) ||
+    // cnt<n-1&&a[n-1]==cnt+1&&a[cnt]==cnt+1&&a[cnt-1]==cnt;
+    bool flg = a[0]==a[n-1]&&(a[0]==n-1||n>=2*a[0]);
+    if(!flg&&a[0]==a[n-1]){
+        cout << "No" << endl;
+        return 0;
+    }else if(a[0]==a[n-1]){
+        cout << "Yes" << endl;
+        return 0;
     }
-    repr(i,1,n){
-        if(a[i]==col+1) {
-            
-        }
+    int sm_cnt=0;
+    int sm = a[0];
+    int cur=0;
+    while(cur<n&&a[cur]==sm){
+        cur++;sm_cnt++;
     }
-    cout << "Yes" << endl;
+    flg |= n-sm_cnt-(a[n-1]-sm_cnt)*2>=0&&sm_cnt<a[n-1];
+    cout << (flg ? "Yes" : "No") << endl;
     return 0;
 }

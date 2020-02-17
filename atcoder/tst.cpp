@@ -11,23 +11,13 @@ char itoc(int i){
 }
 
 template<class T> inline void printb(T a) {
-    int cnt = sizeof(T)*8-1;
-    printf("%d\n",cnt);
-    bool flg = false;
-    while(cnt>=0){
-        if(!flg&&a>>cnt&1){
-            flg = true;
-        }
-        if(flg){
-            cout << (a>>cnt&1);
-        }
-        cnt--;
-    }
-    cout << "\n";
 }
 
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    printb(20);
+    int a,b,c;
+    a = stoi("06");
+    cin>>b;
+    cout << a <<" " << b<< endl;
 }
