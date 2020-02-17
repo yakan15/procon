@@ -7,7 +7,7 @@ fi
 fname=$1
 filename=${fname%%.*}.cpp
 if [[ -f ./$filename ]]; then
-    echo "The specified file is already exists.\n"
+    echo "The specified file already exists.\n"
     exit
 fi
 cp template.cpp $filename
