@@ -20,5 +20,6 @@ template<class T> inline bool chmax(T& a, T b) {
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
+
     return 0;
 }
