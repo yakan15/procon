@@ -20,33 +20,45 @@ class ModCom {
             assert(_n>=2);
             n = _n+1;
             mod = _mod;
-            fac.assign(n,0);
-            finv.assign(n,0);
-            inv.assign(n,0);
+            _fac.assign(n,0);
+            _finv.assign(n,0);
+            _inv.assign(n,0);
             init();
         }
 
         long long com(int _n, int k){
             if(_n < k){return 0;}
             if(_n < 0 || k < 0){return 0;}
-            return fac.at(_n) * (finv.at(k) * finv.at(_n - k) % mod) % mod;
+            return _fac.at(_n) * (_finv.at(k) * _finv.at(_n - k) % mod) % mod;
+        }
+
+        long long fac(int _n) {
+            return _fac.at(_n);
+        }
+
+        long long inv(int _n) {
+            return _inv.at(_n);
+        }
+
+        long long finv(int _n) {
+            return _finv.at(_n);
         }
 
     private:
         int n;
         long long mod;
-        vector<long long> fac;
-        vector<long long> finv;
-        vector<long long> inv;
+        vector<long long> _fac;
+        vector<long long> _finv;
+        vector<long long> _inv;
 
         void init(void){
-            fac.at(0) = fac.at(1) = 1;
-            finv.at(0) = finv.at(1) = 1;
-            inv.at(1) = 1;
+            _fac.at(0) = _fac.at(1) = 1;
+            _finv.at(0) = _finv.at(1) = 1;
+            _inv.at(1) = 1;
             for(int i = 2;i < n; i++){
-                fac.at(i) = fac.at(i - 1) * i % mod;
-                inv.at(i) = mod - inv.at(mod % i) * (mod / i) % mod;
-                finv.at(i) = finv.at(i - 1) * inv.at(i) % mod;
+                _fac.at(i) = _fac.at(i - 1) * i % mod;
+                _inv.at(i) = mod - _inv.at(mod % i) * (mod / i) % mod;
+                _finv.at(i) = _finv.at(i - 1) * _inv.at(i) % mod;
             }
             return;
         }
