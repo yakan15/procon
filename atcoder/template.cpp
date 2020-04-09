@@ -18,6 +18,8 @@ template<class T> inline bool chmax(T& a, T b) {
     if (a < b) { a = b; return true;}
     return false;
 }
+
+
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
