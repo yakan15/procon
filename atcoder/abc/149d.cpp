@@ -18,30 +18,27 @@ template<class T> inline bool chmax(T& a, T b) {
     return false;
 }
 int main(void) {
+    ll n,k,score[3];
+    string t;
+    cin>>n>>k>>score[0]>>score[1]>>score[2]>>t;
+    map<char, int> mp;
+    mp['r'] = score[2];
+    mp['s'] = score[0];
+    mp['p'] = score[1];
+    vector<bool> chk(n,false);
     cin.tie(0);
     ios::sync_with_stdio(false);
-    ll n,k;cin>>n>>k;
-    vector<ll> a(n), csum(n+1,0);
-    map<ll,ll> count;
-    rep(i,n){
-        cin>>a[i];
-        a[i] = (a[i]-1) % k;
-    }
+    int res = 0;
     rep(i,n) {
-        csum[i+1] = (csum[i] + a[i]) % k;
-    }
-    ll res = 0;
-    rep(i,n) {
-        cout << csum[i+1] << " ";
-    }
-    rep(i,n) {
-        if (i>=k-1){
-            count[csum[i+1-k]]--;
+        if (i<k) {
+            res += mp[t[i]];
+            chk[i] = true;
         }
-        res += count[csum[i+1]];
-        count[csum[i+1]]++;
-        if (csum[i+1]==0) {
-            res++;
+        else {
+            if (t[i] != t[i-k] || !chk[i-k]) {
+                res += mp[t[i]];
+                chk[i] = true;
+            }
         }
     }
     cout << res << endl;

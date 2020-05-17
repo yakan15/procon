@@ -33,6 +33,9 @@ vector<long long> sieve(long long n) {
 map<ll,ll> prime_fact(ll num) {
     ll now = 2;
     map<ll,ll> divisors; 
+    if (num<2) {
+        return map<ll,ll>();
+    }
     while(now*now<=num) {
         while(num%now==0) {
             divisors[now]++;

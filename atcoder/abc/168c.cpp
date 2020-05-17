@@ -4,6 +4,7 @@
 // const bool debug=true;
 const bool debug=false;
 #define DEBUG if(debug==true)
+#define all(x) begin((x)), end((x))
 #define vprint(x) for(auto a:(x)) cout << x << endl;
 using namespace std;
 typedef long long ll;
@@ -17,33 +18,19 @@ template<class T> inline bool chmax(T& a, T b) {
     if (a < b) { a = b; return true;}
     return false;
 }
+
+
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    ll n,k;cin>>n>>k;
-    vector<ll> a(n), csum(n+1,0);
-    map<ll,ll> count;
-    rep(i,n){
-        cin>>a[i];
-        a[i] = (a[i]-1) % k;
-    }
-    rep(i,n) {
-        csum[i+1] = (csum[i] + a[i]) % k;
-    }
-    ll res = 0;
-    rep(i,n) {
-        cout << csum[i+1] << " ";
-    }
-    rep(i,n) {
-        if (i>=k-1){
-            count[csum[i+1-k]]--;
-        }
-        res += count[csum[i+1]];
-        count[csum[i+1]]++;
-        if (csum[i+1]==0) {
-            res++;
-        }
-    }
-    cout << res << endl;
+    ll a,b,h,m;cin>>a>>b>>h>>m;
+    long double hr = 0.5 * (h * 60 + m);
+    long double PI = 3.14159265358979323846264338327950L;
+    long double mr = 6.0 * m;
+    long double arg = abs(hr-mr);
+    arg = min(360.0L-arg,arg);
+    // arg = min(180.0L-arg,arg);
+    long double res = sqrtl(a*a+b*b-2*a*b*cosl(arg/180.0L*PI));
+    printf("%.20Lf\n",res);
     return 0;
 }

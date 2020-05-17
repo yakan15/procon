@@ -4,6 +4,7 @@
 // const bool debug=true;
 const bool debug=false;
 #define DEBUG if(debug==true)
+#define all(x) begin((x)), end((x))
 #define vprint(x) for(auto a:(x)) cout << x << endl;
 using namespace std;
 typedef long long ll;
@@ -17,33 +18,41 @@ template<class T> inline bool chmax(T& a, T b) {
     if (a < b) { a = b; return true;}
     return false;
 }
+
+
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    ll n,k;cin>>n>>k;
-    vector<ll> a(n), csum(n+1,0);
-    map<ll,ll> count;
-    rep(i,n){
-        cin>>a[i];
-        a[i] = (a[i]-1) % k;
+    ll n,m;cin>>n>>m;
+    vector<vector<ll>> edges(n);
+    vector<ll> next(n,-1);
+    queue<ll> que;
+    rep(i,m) {
+        ll a,b;cin>>a>>b;
+        a--;b--;
+        edges[a].push_back(b);
+        edges[b].push_back(a);
     }
-    rep(i,n) {
-        csum[i+1] = (csum[i] + a[i]) % k;
-    }
-    ll res = 0;
-    rep(i,n) {
-        cout << csum[i+1] << " ";
-    }
-    rep(i,n) {
-        if (i>=k-1){
-            count[csum[i+1-k]]--;
-        }
-        res += count[csum[i+1]];
-        count[csum[i+1]]++;
-        if (csum[i+1]==0) {
-            res++;
+    que.push(0);
+    while(!que.empty()) {
+        ll now = que.front();
+        que.pop();
+        for(auto x:edges[now]) {
+            if (next[x]==-1) {
+                next[x] = now;
+                que.push(x);
+            }
         }
     }
-    cout << res << endl;
+    repr(i,1,n) {
+        if (next[i]==-1){
+            cout << "No" << endl;
+            return 0;
+        }
+    }
+    cout << "Yes" << endl;
+    repr(i,1,n) {
+        cout << next[i]+1<<endl;
+    }
     return 0;
 }

@@ -1,23 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define ll long long
 
+struct nt {
+    ll time;
+    ll node;
+    ll money;
+    nt(ll t, ll n, ll m) : time(t), node(n), money(m) {}
+};
 
-int char_to_idx(char c){
-    return (c < 'a' ? c-'A' : c-'a'+26);
-}
+struct conNt {
+    bool operator()(nt const &a, nt const &b) {
+        return a.time > b.time;
+    }
+};
 
-char itoc(int i){
-    return char(i<26 ? i+'A' : i-26+'a');
-}
-
-template<class T> inline void printb(T a) {
-}
 
 int main() {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    int a,b,c;
-    a = stoi("06");
-    cin>>b;
-    cout << a <<" " << b<< endl;
+    priority_queue<nt, vector<nt>, conNt> pq;
+    cout <<" test " << endl;
+    for(int i=0;i<5;i++) {
+        pq.emplace(6-i,4LL,5LL);
+    }
+    while(!pq.empty()) {
+        cout << pq.top().time << endl;
+        pq.pop();
+    }
+    return 0;
 }

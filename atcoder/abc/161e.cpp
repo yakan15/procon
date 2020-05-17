@@ -20,30 +20,43 @@ template<class T> inline bool chmax(T& a, T b) {
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    ll n,k;cin>>n>>k;
-    vector<ll> a(n), csum(n+1,0);
-    map<ll,ll> count;
-    rep(i,n){
-        cin>>a[i];
-        a[i] = (a[i]-1) % k;
-    }
+    ll n,k,c;cin>>n>>k>>c;
+    string s;
+    cin>>s;
+    vector<ll> fw(k,-1),bk(k,-1);
+    ll cnt = 0;
     rep(i,n) {
-        csum[i+1] = (csum[i] + a[i]) % k;
-    }
-    ll res = 0;
-    rep(i,n) {
-        cout << csum[i+1] << " ";
-    }
-    rep(i,n) {
-        if (i>=k-1){
-            count[csum[i+1-k]]--;
+        if (s[i]=='x') {
+            continue;
         }
-        res += count[csum[i+1]];
-        count[csum[i+1]]++;
-        if (csum[i+1]==0) {
-            res++;
+        if (cnt==0) {
+            fw[0] = i;
+            ++cnt;
+        }
+        else if (fw[cnt-1]+c<i) {
+            fw[cnt] = i;
+            ++cnt;
+        }
+        if (cnt==k) break;
+    }
+
+    cnt--;
+    for(int i=n-1;i>=0;i--) {
+        if (s[i]=='x') continue;
+        if (cnt==k-1) {
+            bk[k-1] = i;
+            --cnt;
+        }
+        else if (bk[cnt+1]-c>i) {
+            bk[cnt] = i;
+            --cnt;
+        }
+        if (cnt==-1) break;
+    }
+    rep(i,k) {
+        if (fw[i]==bk[i]) {
+            cout << fw[i]+1 << endl;
         }
     }
-    cout << res << endl;
     return 0;
 }

@@ -11,5 +11,11 @@ const ll MOD = 1000000007;
 int main(void) {
     ll x,y;
     cin>>x>>y;
+    if (abs(x-y)<=1) {
+        cout << "Brown" << endl;
+    }
+    else {
+        cout << "Alice" << endl;
+    }
     return 0;
 }

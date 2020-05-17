@@ -17,33 +17,32 @@ template<class T> inline bool chmax(T& a, T b) {
     if (a < b) { a = b; return true;}
     return false;
 }
+
+ll lcm(ll a, ll b) {
+    return a* b / __gcd(a,b);
+}
+
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    ll n,k;cin>>n>>k;
-    vector<ll> a(n), csum(n+1,0);
-    map<ll,ll> count;
-    rep(i,n){
+    ll n,m;cin>>n>>m;
+    vector<ll> a(n);rep(i,n){
         cin>>a[i];
-        a[i] = (a[i]-1) % k;
+        a[i] /= 2;
+    }
+    sort(begin(a), end(a), greater<ll>());
+    ll tmp = 1;
+    rep(i,n) {
+        tmp = lcm(tmp, a[i]);
     }
     rep(i,n) {
-        csum[i+1] = (csum[i] + a[i]) % k;
-    }
-    ll res = 0;
-    rep(i,n) {
-        cout << csum[i+1] << " ";
-    }
-    rep(i,n) {
-        if (i>=k-1){
-            count[csum[i+1-k]]--;
-        }
-        res += count[csum[i+1]];
-        count[csum[i+1]]++;
-        if (csum[i+1]==0) {
-            res++;
+        if (tmp/a[i]%2==0) {
+            cout << 0 << endl;
+            return 0;
         }
     }
-    cout << res << endl;
+    ll res = m/tmp;
+    cout << (res%2 ? res/2+1:res/2) << endl;
+
     return 0;
 }

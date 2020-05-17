@@ -4,6 +4,7 @@
 // const bool debug=true;
 const bool debug=false;
 #define DEBUG if(debug==true)
+#define all(x) begin((x)), end((x))
 #define vprint(x) for(auto a:(x)) cout << x << endl;
 using namespace std;
 typedef long long ll;
@@ -17,33 +18,21 @@ template<class T> inline bool chmax(T& a, T b) {
     if (a < b) { a = b; return true;}
     return false;
 }
+
+
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    ll n,k;cin>>n>>k;
-    vector<ll> a(n), csum(n+1,0);
-    map<ll,ll> count;
-    rep(i,n){
-        cin>>a[i];
-        a[i] = (a[i]-1) % k;
+    ll a,b,c,k;
+    cin>>a>>b>>c>>k;
+    if (k<=a) {
+        cout << k << endl;
     }
-    rep(i,n) {
-        csum[i+1] = (csum[i] + a[i]) % k;
+    else if (k <= a+b) {
+        cout << a << endl;
     }
-    ll res = 0;
-    rep(i,n) {
-        cout << csum[i+1] << " ";
+    else {
+        cout << a - (k-a-b) << endl;
     }
-    rep(i,n) {
-        if (i>=k-1){
-            count[csum[i+1-k]]--;
-        }
-        res += count[csum[i+1]];
-        count[csum[i+1]]++;
-        if (csum[i+1]==0) {
-            res++;
-        }
-    }
-    cout << res << endl;
     return 0;
 }

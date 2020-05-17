@@ -20,30 +20,15 @@ template<class T> inline bool chmax(T& a, T b) {
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    ll n,k;cin>>n>>k;
-    vector<ll> a(n), csum(n+1,0);
-    map<ll,ll> count;
-    rep(i,n){
-        cin>>a[i];
-        a[i] = (a[i]-1) % k;
+    ull h,w;cin>>h>>w;
+    if (h==1 || w==1) {
+        cout << 1 << endl;
     }
-    rep(i,n) {
-        csum[i+1] = (csum[i] + a[i]) % k;
+    else if(h%2 && w%2) {
+        cout << (h*w-1)/2+1 << endl;
     }
-    ll res = 0;
-    rep(i,n) {
-        cout << csum[i+1] << " ";
+    else {
+        cout << h*w/2 << endl;
     }
-    rep(i,n) {
-        if (i>=k-1){
-            count[csum[i+1-k]]--;
-        }
-        res += count[csum[i+1]];
-        count[csum[i+1]]++;
-        if (csum[i+1]==0) {
-            res++;
-        }
-    }
-    cout << res << endl;
     return 0;
 }

@@ -23,7 +23,7 @@ int main(void) {
     int n;
     rep(i,n){
         ll a,b,c,d;cin>>a>>b>>c>>d;
-        if(a<b||d<<b){
+        if(a<b||d<b){
             cout << "No" << endl;
             continue;
         }else if(b<=c+1){
