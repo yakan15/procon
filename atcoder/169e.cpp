@@ -4,6 +4,7 @@
 // const bool debug=true;
 const bool debug=false;
 #define DEBUG if(debug==true)
+#define all(x) begin((x)), end((x))
 #define vprint(x) for(auto a:(x)) cout << x << endl;
 using namespace std;
 typedef long long ll;
@@ -17,28 +18,28 @@ template<class T> inline bool chmax(T& a, T b) {
     if (a < b) { a = b; return true;}
     return false;
 }
+
+
 int main(void) {
     cin.tie(0);
     ios::sync_with_stdio(false);
-    ll k;cin>>k;
-    queue<ll> que;
-    repr(i,1,10) {
-        que.push(i);
+    ll n;cin>>n;
+    vector<ll> a(n),b(n);
+    rep(i,n) {
+        cin>>a[i]>>b[i];
     }
-    ll res = 1;
-    while(k) {
-        res = que.front();
-        que.pop();
-        ll x = res % 10;
-        if (x) {
-            que.push(res*10+x-1);
-        }
-        que.push(res*10+x);
-        if (x<9) {
-            que.push(res*10+x+1);
-        }
-        k--;
+    sort(all(a));
+    sort(all(b));
+    if (n%2) {
+        ll mn = a[n/2];
+        ll mx = b[n-1-(n/2)];
+        cout << mx-mn+1 << endl;
     }
-    cout << res << endl;
+    else {
+        ll mx = b[n/2] + b[n/2-1];
+        ll mn = a[n/2] + a[n/2-1];
+        cout << mx - mn + 1 << endl;
+    }
+
     return 0;
 }
