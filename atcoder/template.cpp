@@ -10,6 +10,7 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 const ll MOD = 1000000007;
+const ll MOD2 = 998244353;
 template<class T> inline bool chmin(T& a, T b) {
     if (a > b) { a = b; return true;}
     return false;
